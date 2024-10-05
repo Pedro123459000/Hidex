@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidex - The Newest Best Roblox Experience GUI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: url('background.jpg') no-repeat center center fixed; /* Adiciona a imagem de fundo */
+            background-size: cover; /* Faz com que a imagem cubra todo o fundo */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .left-section {
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0; /* Iniciar invisível */
+            animation: fadeIn 1s forwards; /* Adicionando a animação */
+            width: 400px; /* Definindo a largura das seções */
+            text-align: center; /* Centralizando texto */
+            margin-top: 50px; /* Margem superior para deslocar para baixo */
+            background-color: transparent; /* Fundo transparente */
+        }
+
+        h2 {
+            font-size: 2.5rem; /* Tamanho do título */
+            color: #ffffff; /* Cor do título em branco */
+            margin-bottom: 10px; /* Margem inferior */
+            margin-top: 0; /* Remover margem superior */
+            background-color: transparent; /* Fundo transparente */
+        }
+
+        p {
+            font-size: 1rem;
+            color: #ffffff; /* Cor do texto em branco */
+            margin-top: 10px; /* Adicionando espaço entre o título e o parágrafo */
+            background-color: transparent; /* Fundo transparente */
+            text-align: left; /* Alinhar texto à esquerda */
+        }
+
+        .btn {
+            display: flex; /* Alterado para flex para alinhar o ícone */
+            justify-content: center; /* Centralizando o conteúdo */
+            align-items: center; /* Alinhar ícone e texto verticalmente */
+            padding: 10px;
+            margin-top: 20px; /* Aumentando a margem superior */
+            background-color: transparent; /* Fundo transparente para o botão */
+            border-radius: 5px;
+            font-weight: bold;
+            border: 2px solid #ffffff; /* Borda branca para o botão */
+            text-align: left; /* Alinhar o botão à esquerda */
+            width: 100%; /* Para que o botão ocupe a largura total */
+            height: 50px; /* Altura do botão */
+            cursor: pointer; /* Mudar o cursor ao passar o mouse */
+            transition: background-color 0.3s; /* Transição suave */
+        }
+
+        .btn img {
+            width: 35px; /* Aumentando o tamanho do ícone do Discord */
+            height: 35px; /* Mantendo a proporção */
+            margin-right: 8px; /* Espaço entre o ícone e o texto */
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Fundo mais claro ao passar o mouse */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #ffffff; /* Cor do texto do rodapé em branco */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Começa invisível */
+                transform: translateY(20px); /* Move um pouco para baixo */
+            }
+            to {
+                opacity: 1; /* Termina visível */
+                transform: translateY(0); /* Retorna à posição original */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <h2>The Newest Best Roblox Experience GUI</h2>
+            <p>O Hidex é uma hub feita em <a href="https://github.com/shlexware/Orion/blob/main/Documentation.md">Orion Library</a>. Ela permite você usar muitas features, como exemplo, matar jogadores, fling etc.</p>
+            <p>Como ainda é privado por questões de privacidade, apenas iremos liberar o Discord.</p>
+            <p>Caso queira entrar para se recrutar, clique no link abaixo.</p>
+            <a href="https://discord.gg/NjhZ6nDcKW" class="btn">
+                <img src="discord.png" alt="Discord Icon">
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Hidex - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
