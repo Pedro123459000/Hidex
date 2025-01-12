@@ -65,11 +65,11 @@
     /* Caixa de pontos e informações */
     .content {
       z-index: 10;
-      padding: 20px;
+      padding: 30px;
       background-color: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
-      width: 80%;
-      max-width: 600px;
+      width: 70%;
+      max-width: 800px;
       max-height: 85vh; /* Ajusta a altura para 85% */
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
       overflow-y: auto;
@@ -95,9 +95,78 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       width: 100%;
+      margin-bottom: 10px;
     }
 
     .button:hover {
+      background-color: #3700b3;
+    }
+
+    .upgrade-button {
+      width: auto;
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 1.3em;
+    }
+
+    .upgrade-button.disabled {
+      background-color: #7f7f7f;
+      cursor: not-allowed;
+    }
+
+    /* Adicionando o + no canto para abrir a aba */
+    .plus-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #6200ea;
+      color: white;
+      font-size: 2em;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .plus-button:hover {
+      background-color: #3700b3;
+    }
+
+    /* Aba de temas */
+    .theme-shop {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      transition: right 0.3s ease;
+    }
+
+    .theme-shop.open {
+      right: 0;
+    }
+
+    .theme-button {
+      margin: 10px 0;
+      padding: 15px;
+      background-color: #6200ea;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .theme-button:hover {
       background-color: #3700b3;
     }
   </style>
@@ -127,7 +196,6 @@
     <span>＞﹏＜</span>
     <span>＞﹏＜</span>
     <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
   </div>
 
   <div class="content">
@@ -135,29 +203,80 @@
     <div class="points">
       Pontos: <span id="points">0</span>
     </div>
-    <button class="button" onclick="buyUpgrade()">Comprar Upgrade</button>
+
+    <!-- Upgrade de 50 pontos -->
+    <button class="button upgrade-button" id="upgrade1" onclick="buyUpgrade(50)">Upgrade (50 pontos) - Dobrar Pontos</button>
+    <!-- Upgrade de 500 pontos -->
+    <button class="button upgrade-button" id="upgrade2" onclick="buyUpgrade(500)">Upgrade (500 pontos) - Dobrar Velocidade</button>
+    <!-- Upgrade de 10000 pontos -->
+    <button class="button upgrade-button" id="upgrade3" onclick="buyUpgrade(10000)">Upgrade (10000 pontos) - Ganhar 300 Pontos a cada ms</button>
+  </div>
+
+  <!-- Botão + no canto -->
+  <button class="plus-button" onclick="toggleThemeShop()">+</button>
+
+  <!-- Aba de Temas -->
+  <div class="theme-shop" id="themeShop">
+    <h2>Escolha um Tema</h2>
+    <button class="theme-button" onclick="buyTheme()">Tema de Natal (600000 pontos)</button>
+    <button class="theme-button" onclick="buyTheme()">Tema de Halloween (600000 pontos)</button>
+    <button class="theme-button" onclick="buyTheme()">Tema de Primavera (600000 pontos)</button>
   </div>
 
   <script>
     let points = 0;
     let interval = 10000; // A cada 10 segundos, o usuário ganha 1 ponto
+    let pointsMultiplier = 1; // Multiplicador de pontos
+    let speedMultiplier = 1; // Multiplicador de velocidade (10 segundos)
+    let themeShopOpen = false; // Controla se a aba de temas está aberta
 
     // Função para ganhar pontos automaticamente
     setInterval(() => {
-      points++;
+      points += pointsMultiplier;
       document.getElementById('points').innerText = points;
-    }, interval);
+    }, interval / speedMultiplier);
 
     // Função para comprar upgrade
-    function buyUpgrade() {
-      if (points >= 50) {
-        points -= 50;
+    function buyUpgrade(cost) {
+      if (points >= cost) {
+        points -= cost;
         document.getElementById('points').innerText = points;
-        alert("Você comprou um upgrade! Seus pontos agora dobrarão!");
+
+        if (cost === 50) {
+          pointsMultiplier *= 2; // Dobrar a quantidade de pontos ganhos
+          alert("Você comprou o upgrade! Seus pontos agora dobrarão!");
+        } else if (cost === 500) {
+          speedMultiplier *= 2; // Dobrar a velocidade de ganho de pontos
+          alert("Você comprou o upgrade! Sua velocidade de ganho de pontos dobrou!");
+        } else if (cost === 10000) {
+          setInterval(() => {
+            points += 300;
+            document.getElementById('points').innerText = points;
+          }, 1); // A cada milissegundo, ganhar 300 pontos
+          alert("Você comprou o upgrade! Agora você ganhará 300 pontos a cada milissegundo!");
+        }
+
+        // Desabilita o botão de upgrade se o usuário já comprou
+        toggleUpgradeButton(cost);
       } else {
         alert("Você não tem pontos suficientes.");
       }
     }
-  </script>
-</body>
-</html>
+
+    // Função para desabilitar os botões após a compra
+    function toggleUpgradeButton(cost) {
+      if (cost === 50) {
+        document.getElementById('upgrade1').classList.add('disabled');
+      } else if (cost === 500) {
+        document.getElementById('upgrade2').classList.add('disabled');
+      } else if (cost === 10000) {
+        document.getElementById('upgrade3').classList.add('disabled');
+      }
+    }
+
+    // Função para abrir ou fechar a aba de temas
+    function toggleThemeShop() {
+      themeShopOpen = !themeShopOpen;
+      const themeShop = document.getElementById('themeShop');
+      if (themeShopOpen) {
+        theme
