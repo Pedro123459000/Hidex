@@ -21,7 +21,7 @@
       position: relative;
     }
 
-    /* Criando o fundo com o texto ＞﹏＜ repetido */
+    /* Criando o fundo com o texto ＞﹏＜ repetido de forma automática */
     .background {
       position: absolute;
       top: 0;
@@ -36,14 +36,14 @@
       overflow: hidden;
       z-index: 1;
       pointer-events: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr); /* Repeats the text 10 times horizontally */
+      grid-template-rows: repeat(10, 1fr); /* Repeats the text 10 times vertically */
     }
 
     .background span {
       display: inline-block;
+      text-align: center;
       padding: 10px;
     }
 
@@ -86,117 +86,7 @@
 </head>
 <body>
   <div class="background">
-    <!-- Repetindo o texto ＞﹏＜ 100 vezes no fundo -->
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
-    <span>＞﹏＜</span>
+    <!-- O texto ＞﹏＜ será repetido automaticamente -->
     <span>＞﹏＜</span>
     <span>＞﹏＜</span>
     <span>＞﹏＜</span>
