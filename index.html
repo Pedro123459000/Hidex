@@ -9,7 +9,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       background-color: #121212;
       color: #fff;
       height: 100vh;
@@ -17,23 +17,38 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: hidden;
       position: relative;
     }
 
-    /* Criando o fundo com o texto ＞﹏＜ repetido de forma automática */
+    /* Barra vermelha em cima e embaixo */
+    .top-bar, .bottom-bar {
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      background-color: red;
+      z-index: 2;
+    }
+
+    .top-bar {
+      top: 0;
+    }
+
+    .bottom-bar {
+      bottom: 0;
+    }
+
+    /* Criando o fundo com o texto ＞﹏＜ repetido */
     .background {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: #121212;
+      background-color: transparent;
       color: rgba(255, 255, 255, 0.1);
       font-size: 50px;
       line-height: 1;
       white-space: pre;
-      overflow: hidden;
       z-index: 1;
       pointer-events: none;
       display: grid;
@@ -55,7 +70,9 @@
       border-radius: 10px;
       width: 80%;
       max-width: 600px;
+      max-height: 85vh; /* Ajusta a altura para 85% */
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
     }
 
     h1 {
@@ -77,6 +94,7 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      width: 100%;
     }
 
     .button:hover {
@@ -85,9 +103,11 @@
   </style>
 </head>
 <body>
+  <div class="top-bar"></div>
+  <div class="bottom-bar"></div>
+
   <div class="background">
     <!-- O texto ＞﹏＜ será repetido automaticamente -->
-    <span>＞﹏＜</span>
     <span>＞﹏＜</span>
     <span>＞﹏＜</span>
     <span>＞﹏＜</span>
