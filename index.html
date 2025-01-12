@@ -1,212 +1,253 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Virtual - Pontos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        h1 {
-            margin-top: 20px;
-            color: #2c3e50;
-        }
-        .container {
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 600px;
-        }
-        .points-display {
-            font-size: 24px;
-            color: #e74c3c;
-            margin-bottom: 20px;
-        }
-        .button {
-            padding: 15px 30px;
-            margin: 10px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #2980b9;
-        }
-        .shop-section {
-            margin-top: 20px;
-        }
-        .shop-section button {
-            padding: 12px 24px;
-            margin: 10px;
-            font-size: 16px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .shop-section button:hover {
-            background-color: #2ecc71;
-        }
-        .theme-section {
-            margin-top: 20px;
-        }
-        .theme-button {
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .theme-button:hover {
-            background-color: #f1c40f;
-        }
-        #theme-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .theme-modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-            text-align: center;
-        }
-        .close {
-            font-size: 20px;
-            color: #e74c3c;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Virtual</title>
+  <style>
+    /* Estilo para a página em modo escuro */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Criando o fundo com o texto ＞﹏＜ repetido */
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #121212;
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 50px;
+      line-height: 1;
+      white-space: pre;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .background span {
+      display: inline-block;
+      padding: 10px;
+    }
+
+    /* Caixa de pontos e informações */
+    .content {
+      z-index: 10;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .points {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      background-color: #6200ea;
+      color: white;
+      font-size: 1.5em;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #3700b3;
+    }
+  </style>
 </head>
 <body>
-    <h1>Loja Virtual - Pontos</h1>
-    <div class="container">
-        <div class="points-display">
-            Pontos: <span id="points">0</span>
-        </div>
-        <button id="plus-button" class="button">+</button>
-        <div class="shop-section">
-            <button id="buy-doubler" class="button" disabled>Comprar Dobro de Pontos (50)</button>
-            <button id="buy-speed" class="button" disabled>Comprar Dobro de Velocidade (500)</button>
-            <button id="buy-ultra" class="button" disabled>Comprar Pontos a Cada Milissegundo (10000)</button>
-        </div>
-        <div class="theme-section">
-            <button class="theme-button" onclick="openThemeModal()">Temas para Loja (6000000 pontos)</button>
-        </div>
+  <div class="background">
+    <!-- Repetindo o texto ＞﹏＜ 100 vezes no fundo -->
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+    <span>＞﹏＜</span>
+  </div>
+
+  <div class="content">
+    <h1>Loja Virtual</h1>
+    <div class="points">
+      Pontos: <span id="points">0</span>
     </div>
+    <button class="button" onclick="buyUpgrade()">Comprar Upgrade</button>
+  </div>
 
-    <!-- Modal para Seleção de Tema -->
-    <div id="theme-modal" class="theme-modal">
-        <div class="theme-modal-content">
-            <span class="close" onclick="closeThemeModal()">&times;</span>
-            <h2>Escolha um Tema</h2>
-            <button class="theme-button">Tema de Natal</button>
-            <button class="theme-button">Tema de Halloween</button>
-            <button class="theme-button">Tema de Primavera</button>
-        </div>
-    </div>
+  <script>
+    let points = 0;
+    let interval = 10000; // A cada 10 segundos, o usuário ganha 1 ponto
 
-    <script>
-        let points = 0;
-        let multiplier = 1;
-        let pointSpeed = 10000; // Intervalo de tempo inicial (10 segundos)
-        let speedMultiplier = 1;
+    // Função para ganhar pontos automaticamente
+    setInterval(() => {
+      points++;
+      document.getElementById('points').innerText = points;
+    }, interval);
 
-        function updatePointsDisplay() {
-            document.getElementById('points').innerText = points;
-        }
-
-        // Lógica para ganhar pontos a cada 10 segundos
-        setInterval(() => {
-            points += multiplier;
-            updatePointsDisplay();
-        }, pointSpeed);
-
-        // Função para adicionar pontos com o botão +
-        document.getElementById('plus-button').onclick = function() {
-            points++;
-            updatePointsDisplay();
-        };
-
-        // Função de compra para Dobrar os Pontos (50)
-        document.getElementById('buy-doubler').onclick = function() {
-            if (points >= 50) {
-                points -= 50;
-                multiplier *= 2;
-                updatePointsDisplay();
-                document.getElementById('buy-doubler').disabled = true;
-            }
-        };
-
-        // Função de compra para Dobrar a Velocidade (500)
-        document.getElementById('buy-speed').onclick = function() {
-            if (points >= 500) {
-                points -= 500;
-                speedMultiplier *= 2;
-                pointSpeed = pointSpeed / speedMultiplier;
-                updatePointsDisplay();
-                document.getElementById('buy-speed').disabled = true;
-            }
-        };
-
-        // Função de compra para Pontos a Cada Milissegundo (10000)
-        document.getElementById('buy-ultra').onclick = function() {
-            if (points >= 10000) {
-                points -= 10000;
-                pointSpeed = 1; // Ganha pontos a cada milissegundo
-                updatePointsDisplay();
-                document.getElementById('buy-ultra').disabled = true;
-            }
-        };
-
-        // Exibição dos botões quando a pessoa tiver pontos suficientes
-        setInterval(() => {
-            if (points >= 50) {
-                document.getElementById('buy-doubler').disabled = false;
-            }
-            if (points >= 500) {
-                document.getElementById('buy-speed').disabled = false;
-            }
-            if (points >= 10000) {
-                document.getElementById('buy-ultra').disabled = false;
-            }
-        }, 100);
-
-        // Funções para Modal de Tema
-        function openThemeModal() {
-            if (points >= 6000000) {
-                document.getElementById('theme-modal').style.display = 'flex';
-            }
-        }
-
-        function closeThemeModal() {
-            document.getElementById('theme-modal').style.display = 'none';
-        }
-    </script>
+    // Função para comprar upgrade
+    function buyUpgrade() {
+      if (points >= 50) {
+        points -= 50;
+        document.getElementById('points').innerText = points;
+        alert("Você comprou um upgrade! Seus pontos agora dobrarão!");
+      } else {
+        alert("Você não tem pontos suficientes.");
+      }
+    }
+  </script>
 </body>
 </html>
