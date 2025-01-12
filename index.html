@@ -3,88 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidex - The Best Roblox Experience GUI</title>
+    <title>Loja Virtual - Pontos</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            text-align: center;
         }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: url('background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #f0f0f0;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            opacity: 0; /* Iniciar com opacidade 0 */
-            animation: fadeIn 1s forwards; /* Efeito fade-in */
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1; /* Finaliza com opacidade 1 */
-            }
-        }
-
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-align: center;
+            margin-top: 20px;
+            color: #2c3e50;
         }
-
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            text-align: center;
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
             max-width: 600px;
-            background: transparent; /* Fundo transparente */
-            padding: 10px;
         }
-
-        .button-container {
-            display: flex;
-            gap: 20px; /* Espaço entre os botões */
-            justify-content: center;
+        .points-display {
+            font-size: 24px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+        .shop-section {
             margin-top: 20px;
         }
-
-        .discord-btn, .youtube-btn {
-            background-color: transparent; /* Fundo transparente */
+        .shop-section button {
+            padding: 12px 24px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: #27ae60;
+            color: white;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
-            outline: none;
+            transition: background-color 0.3s;
         }
-
-        .discord-btn img, .youtube-btn img {
-            width: 100px; /* Tamanho do ícone */
-            height: 100px; /* Tamanho do ícone */
+        .shop-section button:hover {
+            background-color: #2ecc71;
+        }
+        .theme-section {
+            margin-top: 20px;
+        }
+        .theme-button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .theme-button:hover {
+            background-color: #f1c40f;
+        }
+        #theme-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .theme-modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+        .close {
+            font-size: 20px;
+            color: #e74c3c;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>The Newest Best Roblox Experience GUI</h1>
-    <p>O Hidex é uma hub feita em <a href="https://github.com/shlexware/Orion/blob/main/Documentation.md" style="color: #f0f0f0; text-decoration: underline;">Orion Library</a>. Ela permite você usar muitas features, como exemplo, matar jogadores, fling etc.</p>
-    <p>Como ainda é privado por questões de privacidade, apenas iremos liberar o Discord.</p>
-    <p>Caso queira entrar para se recrutar, clique no link abaixo.</p>
-
-    <div class="button-container">
-        <button class="discord-btn">
-            <a href="https://discord.gg/NjhZ6nDcKW" target="_blank">
-                <img src="discord.png" alt="Discord Icon">
-            </a>
-        </button>
-        <button class="youtube-btn">
-            <a href="https://www.youtube.com/@Hidex-w9t" target="_blank">
-                <img src="youtube-icon.png" alt="YouTube Icon">
-            </a>
-        </button>
+    <h1>Loja Virtual - Pontos</h1>
+    <div class="container">
+        <div class="points-display">
+            Pontos: <span id="points">0</span>
+        </div>
+        <button id="plus-button" class="button">+</button>
+        <div class="shop-section">
+            <button id="buy-doubler" class="button" disabled>Comprar Dobro de Pontos (50)</button>
+            <button id="buy-speed" class="button" disabled>Comprar Dobro de Velocidade (500)</button>
+            <button id="buy-ultra" class="button" disabled>Comprar Pontos a Cada Milissegundo (10000)</button>
+        </div>
+        <div class="theme-section">
+            <button class="theme-button" onclick="openThemeModal()">Temas para Loja (6000000 pontos)</button>
+        </div>
     </div>
+
+    <!-- Modal para Seleção de Tema -->
+    <div id="theme-modal" class="theme-modal">
+        <div class="theme-modal-content">
+            <span class="close" onclick="closeThemeModal()">&times;</span>
+            <h2>Escolha um Tema</h2>
+            <button class="theme-button">Tema de Natal</button>
+            <button class="theme-button">Tema de Halloween</button>
+            <button class="theme-button">Tema de Primavera</button>
+        </div>
+    </div>
+
+    <script>
+        let points = 0;
+        let multiplier = 1;
+        let pointSpeed = 10000; // Intervalo de tempo inicial (10 segundos)
+        let speedMultiplier = 1;
+
+        function updatePointsDisplay() {
+            document.getElementById('points').innerText = points;
+        }
+
+        // Lógica para ganhar pontos a cada 10 segundos
+        setInterval(() => {
+            points += multiplier;
+            updatePointsDisplay();
+        }, pointSpeed);
+
+        // Função para adicionar pontos com o botão +
+        document.getElementById('plus-button').onclick = function() {
+            points++;
+            updatePointsDisplay();
+        };
+
+        // Função de compra para Dobrar os Pontos (50)
+        document.getElementById('buy-doubler').onclick = function() {
+            if (points >= 50) {
+                points -= 50;
+                multiplier *= 2;
+                updatePointsDisplay();
+                document.getElementById('buy-doubler').disabled = true;
+            }
+        };
+
+        // Função de compra para Dobrar a Velocidade (500)
+        document.getElementById('buy-speed').onclick = function() {
+            if (points >= 500) {
+                points -= 500;
+                speedMultiplier *= 2;
+                pointSpeed = pointSpeed / speedMultiplier;
+                updatePointsDisplay();
+                document.getElementById('buy-speed').disabled = true;
+            }
+        };
+
+        // Função de compra para Pontos a Cada Milissegundo (10000)
+        document.getElementById('buy-ultra').onclick = function() {
+            if (points >= 10000) {
+                points -= 10000;
+                pointSpeed = 1; // Ganha pontos a cada milissegundo
+                updatePointsDisplay();
+                document.getElementById('buy-ultra').disabled = true;
+            }
+        };
+
+        // Exibição dos botões quando a pessoa tiver pontos suficientes
+        setInterval(() => {
+            if (points >= 50) {
+                document.getElementById('buy-doubler').disabled = false;
+            }
+            if (points >= 500) {
+                document.getElementById('buy-speed').disabled = false;
+            }
+            if (points >= 10000) {
+                document.getElementById('buy-ultra').disabled = false;
+            }
+        }, 100);
+
+        // Funções para Modal de Tema
+        function openThemeModal() {
+            if (points >= 6000000) {
+                document.getElementById('theme-modal').style.display = 'flex';
+            }
+        }
+
+        function closeThemeModal() {
+            document.getElementById('theme-modal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
